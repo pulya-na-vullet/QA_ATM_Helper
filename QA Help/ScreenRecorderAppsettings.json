@@ -1,0 +1,42 @@
+{
+    "Serilog": {
+        "Using": [
+            "Serilog.Sinks.File"
+        ],
+        "MinimumLevel": {
+            "Default": "Debug",
+            "Override": {
+                "Microsoft": "Information",
+                "System": "Information"
+            }
+        },
+        "WriteTo": [
+            {
+                "Name": "File",
+                "Args": {
+                    "path": "%LOCALAPPDATA%/bfs/logs/call-recorder/log.txt",
+                    "rollingInterval": "Day",
+                    "formatter": "Serilog.Formatting.Compact.RenderedCompactJsonFormatter, Serilog.Formatting.Compact"
+                }
+            }
+        ],
+        "Enrich": [
+            "FromLogContext",
+            "WithMachineName",
+            "WithThreadId"
+        ]
+    },
+    "AllowedHosts": "*",
+    "RecordingConfiguration": {
+        "FfmpegPath": "ffmpeg.exe",
+        "VideoDevice": "desktop",
+        "AudioDevices": [],
+        "Bitrate": "1M",
+        "OutputDirectory": "%LOCALAPPDATA%/bfs/records",
+        "Framerate": 30,
+        "ResolutionScale": "720:-2",
+        "ServerUrl": "https://omnivideo.dev.bfs-it.ru/"
+    },
+    "CertificatePath": "omnirecord.pfx",
+    "CertificatePass": "BfsCertSecurePass&g8fg6@48*(1"
+}

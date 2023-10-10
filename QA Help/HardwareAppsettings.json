@@ -1,0 +1,126 @@
+{
+    "Serilog": {
+        "Using": [
+            "Serilog.Sinks.File"
+        ],
+        "MinimumLevel": {
+            "Default": "Debug",
+            "Override": {
+                "Microsoft": "Information",
+                "System": "Information"
+            }
+        },
+        "WriteTo": [
+            {
+                "Name": "File",
+                "Args": {
+                    "path": "%LOCALAPPDATA%/bfs/logs/terminal-hardware/log.txt",
+                    "rollingInterval": "Day",
+                    "restrictedToMinimumLevel": "Information",
+                    "formatter": "Serilog.Formatting.Compact.RenderedCompactJsonFormatter, Serilog.Formatting.Compact"
+                }
+            },
+            {
+                "Name": "Console",
+                "Args": {
+                    "restrictedToMinimumLevel": "Information"
+                }
+            }
+        ],
+        "Enrich": [
+            "FromLogContext",
+            "WithMachineName",
+            "WithThreadId"
+        ]
+    },
+    "DbPath": "%LOCALAPPDATA%/bfs/terminal-hardware/db",
+    "AllowedHosts": "*",
+    "UseMock": false,
+    "CertificatePath": "terminalhard.pfx",
+    "CertificatePass": "BfsCertSecurePass&g8fg6@48*(1",
+    "HealthReport": {
+        "PrinterDelay": "00:00:10",
+        "PassportScannerDelay": "00:00:10",
+        "ScannerDelay": "00:00:10",
+        "CardDispenserDelay": "00:00:10",
+        "IndicatorDelay": "00:00:10",
+        "IdentificationCardDelay": "00:00:10",
+        "FlatScannerDelay": "00:00:10",
+        "POSTerminalDelay": "00:00:30"
+    },
+    "Auth": {
+        "Login": "123",
+        "Password": "12345",
+        "LifeTime": "00:30:00"
+    },
+    "CountersOptions": {
+        "MaxPrintedPapers": 500,
+        "MaxPapersInCaptureTray": 600,
+        "MaxCardsInCaptureTray": 10,
+        "TrayNameCacheLifetimeInSeconds": 600
+    },
+    "BackendIntegration": {
+        "Code": "1",
+        "Secret": "secret",
+        "Url": "https://terminal.staging.bfs-it.ru/"
+    },
+    "TempFilesLifetime": "7.00:00:00",
+    "ActionsLifetime": "30.00:00:00",
+    "Integration": {
+        "CardIssue": {
+            "IndicatorTimeout": 10,
+            "ProcessingWindowName": "manager",
+            "ProcessingWindowClassName": "Tmanager"
+        },
+        "PassportScanner": {
+            "FileFormat": "Jpeg"
+        },
+        "Printer": {
+            "MaxLastPage": 100,
+            "IndicatorTimeout": 30,
+            "Delay": 10000,
+            "Timeout": 300000
+        },
+        "Scanner": {
+            "FileFormat": "Jpeg",
+            "IndicatorTimeout": 5
+        },
+        "FlatScanner": {
+            "FileFormat": "Jpeg"
+        }
+    },
+    "WkHtmlToPdf": {
+        "ToolPath": "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
+    },
+    "Hardware": {
+        "PassportScanner": {
+            "ScannerName": "",
+            "AutoDetectionDocuments": false
+        },
+        "Printer": {
+            "TempFolderPath": "%USERPROFILE%\\AppData\\Local\\bfs\\terminal-hardware\\files",
+            "WaitFileTimeout": "00:00:30",
+            "ExternalProcessTimeout": "00:00:30",
+            "PrinterName": "Brother HL-2260D Printer",
+            "ExternalProcessFileName": "PDFtoPrinter.exe",
+            "ExternalProcessArguments": "\"{0}\" \"{1}\" copies={2} pages={3}-{4} /s"
+        },
+        "Scanner": {
+            "TempFolderPath": "%USERPROFILE%\\AppData\\Local\\bfs\\terminal-hardware\\files",
+            "WaitFileTimeout": "00:00:30",
+            "DriverFolderPath": "C:\\Program Files (x86)\\Plustek\\Plustek VTM300 (x86) v4.0.1.3"
+        },
+        "FlatScanner": {
+            "TempFolderPath": "%USERPROFILE%\\AppData\\Local\\bfs\\terminal-hardware\\files",
+            "ScannerName": "FB1000",
+            "WaitFileTimeout": "00:00:30",
+            "ExternalProcessTimeout": "00:00:30",
+            "ExternalProcessFileName": "C:\\Program Files (x86)\\NAPS2\\NAPS2.Console.exe",
+            "ExternalProcessArguments": "-o \"{0}\" -f --jpegquality 50"
+        }
+    },
+    "CorsUrls": [
+        "https://localhost:4200"
+    ],
+    "Url": "https://terminal.dev.bfs-it.ru/"
+}

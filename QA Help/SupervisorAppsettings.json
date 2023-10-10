@@ -1,0 +1,75 @@
+{
+    "Serilog": {
+        "Using": [
+            "Serilog.Sinks.Console",
+            "Serilog.Sinks.File"
+        ],
+        "MinimumLevel": "Information",
+        "WriteTo": [
+            {
+                "Name": "Console"
+            },
+            {
+                "Name": "File",
+                "Args": {
+                    "path": "%LOCALAPPDATA%/bfs/logs/supervisor/log.txt",
+                    "rollingInterval": "Day",
+                    "formatter": "Serilog.Formatting.Compact.RenderedCompactJsonFormatter, Serilog.Formatting.Compact"
+                }
+            }
+        ],
+        "Enrich": [
+            "FromLogContext"
+        ]
+    },
+    "Metrics": {
+        "RequestDelay": "00:00:08",
+        "BackendUrl": "terminal.dev.bfs-it.ru",
+        "Terminal": {
+            "Code": "9432",
+            "Secret": "secret"
+        }
+    },
+    "Command": {
+        "Interval": "00:01:00",
+        "PathToScripts": "",
+        "ExecutingDirectory": "",
+        "TimeoutPerScript": "00:05:00",
+        "Executor": "powershell"
+    },
+    "ServiceMenu": {
+        "BrowserPath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "Args": "https://terminalhard.local:5502/ -kiosk -incognito",
+        "ProcessName": "chrome",
+        "X": 0,
+        "Y": 0,
+        "Width": 1024,
+        "Height": 1280,
+        "KeyboardPath": "C:\\Windows\\System32\\osk.exe"
+    },
+    "InterprocessCommunication": {
+        "ProcessingWindowName": "manager",
+        "ProcessingWindowClassName": "Tmanager"
+    },
+    "Applications": [
+        {
+            "Name": "SoftOmnivideo",
+            "Path": "C:/Program Files/BFS OmniVideo Terminal/BFS OmniVideo Terminal.exe",
+            "Args": "",
+            "ApplicationType": "HttpService",
+            "Address": "https://omnivideo.local:5501/api/v1/diagnostic",
+            "MetricDelay": "00:00:01",
+            "RebootCron": "35 15 * * *",
+            "RebootallCheckDelay": "00:00:15"
+        },
+        {
+            "Name": "SoftHardware",
+            "Path": "C:/Program Files/BFS Terminal Hardware/Bfs.Terminal.Hardware.Web.exe",
+            "Args": "",
+            "ApplicationType": "HttpService",
+            "Address": "https://terminalhard:5502/api/v1/diagnostic",
+            "MetricDelay": "00:00:10"
+        }
+    ],
+    "BackendUrl": "terminal.demo.bfs-it.ru"
+}
