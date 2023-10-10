@@ -1,0 +1,7 @@
+{
+    "configDevOmniVideo": "C:\\\\Program Files (x86)\\\\QA Help\\\\config.json",
+    "configAppSettingsSupervisor": "C:\\\\Program Files (x86)\\\\QA Help\\\\SupervisorAppsettings.json",
+    "configTerminalOmnivideo": "C:\\\\Program Files (x86)\\\\QA Help\\\\HardwareAppsettings.json",
+    "configScreenRecorder": "C:\\\\Program Files (x86)\\\\ScreenRecorderAppsettings.json",
+    "copyAndClose":"C:\\Program Files (x86)\\QA Help\\SocrutieCopy.vbs"
+}
